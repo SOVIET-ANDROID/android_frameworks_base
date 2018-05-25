@@ -245,7 +245,6 @@ public class NotificationPanelView extends PanelView implements
     private StatusBarKeyguardViewManager mStatusBarKeyguardViewManager;
     private boolean mUserSetupComplete;
 
-    private GestureDetector mLockscreenDoubleTapToSleep;
     private GestureDetector mDoubleTapToSleepGesture;
 
 
@@ -259,7 +258,6 @@ public class NotificationPanelView extends PanelView implements
         mFalsingManager = FalsingManager.getInstance(context);
 
         mPowerManager = context.getSystemService(PowerManager.class);
-        mLockscreenDoubleTapToSleep = new GestureDetector(context,
         mDoubleTapToSleepGesture = new GestureDetector(context,
                 new GestureDetector.SimpleOnGestureListener() {
             @Override
