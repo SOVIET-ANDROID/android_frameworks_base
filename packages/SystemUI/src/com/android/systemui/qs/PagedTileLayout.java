@@ -284,8 +284,8 @@ public class PagedTileLayout extends ViewPager implements QSTileLayout {
         private int getRows() {
             final Resources res = getContext().getResources();
             if (res.getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                // Always have 3 rows in portrait.
-                return 3;
+                // Always have 2 rows in portrait.
+                return 2;
             }
             return Math.max(1, res.getInteger(R.integer.quick_settings_num_rows));
         }
