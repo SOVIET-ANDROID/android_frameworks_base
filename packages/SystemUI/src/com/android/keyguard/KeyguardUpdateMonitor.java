@@ -751,6 +751,7 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener {
                 final boolean turboPowerStatus = intent.getBooleanExtra(EXTRA_TURBO_POWER, false);
                 final Message msg = mHandler.obtainMessage(
                         MSG_BATTERY_UPDATE, new BatteryStatus(status, level, plugged, health,
+                                maxChargingMicroAmp, maxChargingMicroVolt,
                                 maxChargingMicroWatt, dashChargeStatus, turboPowerStatus, temperature));
                 mHandler.sendMessage(msg);
             } else if (TelephonyIntents.ACTION_SIM_STATE_CHANGED.equals(action)) {
@@ -940,7 +941,7 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener {
         public final int temperature;
         public final boolean dashChargeStatus;
         public final boolean turboPowerStatus;
-        public BatteryStatus(int status, int level, int plugged, int health,
+        public BatteryStatus(int status, int level, int plugged, int health, int maxChargingCurrent, int maxChargingVoltage, 
                 int maxChargingWattage, boolean dashChargeStatus, boolean turboPowerStatus, int temperature) {
             this.status = status;
             this.level = level;
@@ -1138,7 +1139,7 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener {
         }
 
         // Take a guess at initial SIM state, battery status and PLMN until we get an update
-        mBatteryStatus = new BatteryStatus(BATTERY_STATUS_UNKNOWN, 100, 0, 0, 0, false, false, 0);
+        mBatteryStatus = new BatteryStatus(BATTERY_STATUS_UNKNOWN, 100, 0, 0, 0, 0, 0, false, false, 0);
 
         // Watch for interesting updates
         final IntentFilter filter = new IntentFilter();
